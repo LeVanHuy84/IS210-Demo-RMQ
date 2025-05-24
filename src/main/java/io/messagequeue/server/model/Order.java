@@ -1,10 +1,17 @@
 package io.messagequeue.server.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "orders")
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Order {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,9 +35,11 @@ public class Order {
     private Long userId;
 
     private String status;
+
+    @CreatedDate
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> items;
+     @JsonManagedReference
+    private List<OrderItem> orderItems = new ArrayList<>();
 }

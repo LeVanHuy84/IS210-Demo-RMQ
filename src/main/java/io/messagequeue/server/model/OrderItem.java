@@ -2,7 +2,8 @@ package io.messagequeue.server.model;
 
 import java.math.BigDecimal;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -29,7 +31,9 @@ public class OrderItem {
     private Integer quantity;
     private BigDecimal price;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
+    @JsonBackReference
+    @ToString.Exclude
     private Order order;
 }

@@ -1,9 +1,10 @@
 package io.messagequeue.server.service;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import io.messagequeue.server.dto.OrderDTO;
 import io.messagequeue.server.messaging.OrderProducer;
 import io.messagequeue.server.model.Order;
 import io.messagequeue.server.model.OrderItem;
@@ -16,13 +17,14 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderProducer orderProducer;
 
-    public Order createOrder(Order order) {
-        order.setCreatedAt(LocalDateTime.now());
-        order.setUpdatedAt(LocalDateTime.now());
+    public List<Order> getAllOrders() {
+        return orderRepository.findAll();
+    }
 
+    public OrderDTO createOrder(Order order) {
         // Gán lại quan hệ ngược
-        if (order.getItems() != null) {
-            for (OrderItem item : order.getItems()) {
+        if (order.getOrderItems() != null) {
+            for (OrderItem item : order.getOrderItems()) {
                 item.setOrder(order);
             }
         }
@@ -31,8 +33,6 @@ public class OrderService {
         Order savedOrder = orderRepository.save(order);
 
         // Gửi message vào MQ
-        orderProducer.placeOrder(savedOrder);
-
-        return savedOrder;
+        return orderProducer.placeOrder(savedOrder);
     }
 }
