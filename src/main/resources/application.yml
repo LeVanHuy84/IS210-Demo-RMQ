@@ -23,3 +23,7 @@ spring:
     username: ${RABBITMQ_USERNAME}
     password: ${RABBITMQ_PASSWORD}
 
+server:
+  port: 8080
+  schema: http
+  name: localhost

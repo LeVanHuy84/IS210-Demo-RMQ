@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Product Shop</title>
+    <link rel="stylesheet" href="/productStyle.css">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="top-right">
+        <a href="#">Thông Báo</a> |
+        <a href="#">Hỗ Trợ</a> |
+        <a href="#">Đăng Ký</a> |
+        <a href="#">Đăng Nhập</a>
+    </div>
+</div>
+
+<div class="main-header">
+    <div class="logo">MyShop</div>
+    <input type="text" placeholder="Tìm sản phẩm..." class="search-box">
+    <div class="cart-icon" onclick="goToOrderPage()">🛒 <span id="cart-count">0</span></div>
+</div>
+
+<!-- Nút mở modal -->
+<button id="openModalBtn">➕ Thêm Sản Phẩm</button>
+
+<!-- Modal thêm sản phẩm -->
+<div id="productModal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Thêm Sản Phẩm</h2>
+        <input type="text" id="name" placeholder="Tên sản phẩm"><br>
+        <input type="text" id="description" placeholder="Mô tả"><br>
+        <input type="number" id="price" placeholder="Giá" step="0.01"><br>
+        <input type="file" id="imageFile"><br>
+        <button onclick="uploadAndCreateProduct()">Tạo sản phẩm</button>
+    </div>
+</div>
+
+<!-- Danh sách sản phẩm -->
+<div id="product-list" class="product-grid"></div>
+
+<script src="/product.js"></script>
+
+</body>
+</html>
