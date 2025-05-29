@@ -27,3 +27,7 @@ server:
   port: 8080
   schema: http
   name: localhost
+
+jwt:
+  expiration: ${JWT_EXPIRATION}
+  secretKey: ${JWT_SECRET_KEY}

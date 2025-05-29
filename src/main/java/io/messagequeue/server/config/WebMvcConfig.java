@@ -9,8 +9,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Mapping từ URL /images/** đến thư mục file thật uploads/
-        registry.addResourceHandler("/images/**")
+        // Phục vụ ảnh do user upload
+        registry.addResourceHandler("/api/v1/images/**")
                 .addResourceLocations("file:uploads/");
     }
 }

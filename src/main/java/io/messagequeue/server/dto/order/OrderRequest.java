@@ -1,4 +1,4 @@
-package io.messagequeue.server.dto;
+package io.messagequeue.server.dto.order;
 
 import java.util.ArrayList;
 import java.util.List;

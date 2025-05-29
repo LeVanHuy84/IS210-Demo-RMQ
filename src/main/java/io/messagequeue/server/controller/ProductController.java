@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.messagequeue.server.dto.ProductRequest;
-import io.messagequeue.server.dto.ProductResponse;
+import io.messagequeue.server.dto.order.ProductRequest;
+import io.messagequeue.server.dto.order.ProductResponse;
 import io.messagequeue.server.service.ProductService;
 import lombok.RequiredArgsConstructor;
 

@@ -5,8 +5,8 @@ import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Service;
 
-import io.messagequeue.server.dto.ProductRequest;
-import io.messagequeue.server.dto.ProductResponse;
+import io.messagequeue.server.dto.order.ProductRequest;
+import io.messagequeue.server.dto.order.ProductResponse;
 import io.messagequeue.server.mapper.ProductMapper;
 import io.messagequeue.server.model.Product;
 import io.messagequeue.server.repository.ProductRepository;

@@ -3,8 +3,8 @@ package io.messagequeue.server.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import io.messagequeue.server.dto.OrderItemRequest;
-import io.messagequeue.server.dto.OrderItemResponse;
+import io.messagequeue.server.dto.order.OrderItemRequest;
+import io.messagequeue.server.dto.order.OrderItemResponse;
 import io.messagequeue.server.model.OrderItem;
 
 @Mapper(componentModel = "spring",

@@ -199,3 +199,15 @@ button:hover {
     top: -8px;
     right: -12px;
 }
+
+.modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.modal-content a {
+    text-decoration: none;
+}
+
+.modal-content a:hover {
+    text-decoration: underline;
+}

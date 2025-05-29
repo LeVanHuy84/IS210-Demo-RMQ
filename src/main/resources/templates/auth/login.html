@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập</title>
+  <link rel="stylesheet" href="/css/loginStyle.css">
+</head>
+<body>
+
+  <div class="login-container">
+    <!-- Left: Login Form -->
+    <div class="login-box">
+      <h2>Đăng nhập</h2>
+      <form method="post" action="/process-login">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <div class="input-group">
+          <span class="icon">📧</span>
+          <input type="text" name="username" placeholder="Tên đăng nhập, email" required>
+        </div>
+        <div class="input-group">
+          <span class="icon">🔑</span>
+          <input type="password" name="password" placeholder="Mật khẩu" required>
+        </div>
+        <div class="options">
+          <label><input type="checkbox" name="remember-me"> Nhớ mật khẩu</label>
+          <a href="#">Quên mật khẩu?</a>
+        </div>
+        <button type="submit">🔐 ĐĂNG NHẬP</button>
+      </form>
+
+      <!-- Thông báo lỗi nếu login fail -->
+      <div th:if="${param.error}">
+        <p style="color:red;">Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.</p>
+      </div>
+      <div th:if="${param.logout}">
+        <p style="color:green;">Đăng xuất thành công.</p>
+      </div>
+    </div>
+
+    <!-- Right: Welcome / Signup -->
+    <div class="signup-box">
+      <h2>XIN CHÀO QUÝ KHÁCH!</h2>
+      <p>Đăng ký tài khoản mới để bắt đầu cùng chúng tôi</p>
+      <a href="/register"><button class="signup-btn">ĐĂNG KÝ</button></a>
+    </div>
+  </div>
+
+</body>
+</html>

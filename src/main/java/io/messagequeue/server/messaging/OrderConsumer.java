@@ -4,7 +4,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import io.messagequeue.server.config.RabbitMQConfig;
-import io.messagequeue.server.dto.OrderDTO;
+import io.messagequeue.server.dto.order.OrderDTO;
 import io.messagequeue.server.model.Order;
 import io.messagequeue.server.model.enums.OrderStatus;
 import io.messagequeue.server.repository.OrderRepository;

@@ -22,16 +22,21 @@ public class GlobalHandlerException {
     public ResponseEntity<Map<String, Object>> handleValidationException(Exception ex, WebRequest request) {
         Map<String, String> errors = new HashMap<>();
 
-        if (ex instanceof MethodArgumentNotValidException) {
-            for (FieldError fieldError : ((MethodArgumentNotValidException) ex).getBindingResult().getFieldErrors()) {
-                errors.put(fieldError.getField(), fieldError.getDefaultMessage());
+        switch (ex) {
+            case MethodArgumentNotValidException methodArgumentNotValidException -> {
+                for (FieldError fieldError : methodArgumentNotValidException.getBindingResult().getFieldErrors()) {
+                    errors.put(fieldError.getField(), fieldError.getDefaultMessage());
+                }
             }
-        } else if (ex instanceof HttpMessageNotReadableException) {
-            Throwable mostSpecificCause = ((HttpMessageNotReadableException) ex).getMostSpecificCause();
-            if (mostSpecificCause instanceof IllegalArgumentException) {
-                errors.put("role", mostSpecificCause.getMessage()); // Chỉ xử lý lỗi Enum
-            } else {
-                errors.put("request", "Invalid request format");
+            case HttpMessageNotReadableException httpMessageNotReadableException -> {
+                Throwable mostSpecificCause = httpMessageNotReadableException.getMostSpecificCause();
+                if (mostSpecificCause instanceof IllegalArgumentException) {
+                    errors.put("role", mostSpecificCause.getMessage()); // Chỉ xử lý lỗi Enum
+                } else {
+                    errors.put("request", "Invalid request format");
+                }
+            }
+            default -> {
             }
         }
 

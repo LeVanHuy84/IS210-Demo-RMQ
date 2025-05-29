@@ -1,4 +1,4 @@
-package io.messagequeue.server.dto;
+package io.messagequeue.server.dto.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

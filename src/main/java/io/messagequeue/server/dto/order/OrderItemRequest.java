@@ -1,4 +1,4 @@
-package io.messagequeue.server.dto;
+package io.messagequeue.server.dto.order;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

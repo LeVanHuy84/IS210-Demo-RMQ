@@ -43,7 +43,7 @@ public class ImageUploadController {
             String imageUrl = serverSchema + "://" +   // http
                               serverName +       // localhost
                               ":" + serverPort +              // 8080
-                              "/images/" + fileName;
+                              "/api/v1/images/" + fileName;
 
             return ResponseEntity.ok(imageUrl);
         } catch (IOException e) {

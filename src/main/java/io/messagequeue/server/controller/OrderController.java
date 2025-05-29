@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.messagequeue.server.dto.OrderDTO;
-import io.messagequeue.server.dto.OrderRequest;
-import io.messagequeue.server.dto.OrderResponse;
+import io.messagequeue.server.dto.order.OrderDTO;
+import io.messagequeue.server.dto.order.OrderRequest;
+import io.messagequeue.server.dto.order.OrderResponse;
 import io.messagequeue.server.service.OrderService;
 import lombok.AllArgsConstructor;
 

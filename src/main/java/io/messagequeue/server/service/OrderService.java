@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import io.messagequeue.server.dto.OrderDTO;
-import io.messagequeue.server.dto.OrderItemRequest;
-import io.messagequeue.server.dto.OrderRequest;
-import io.messagequeue.server.dto.OrderResponse;
+import io.messagequeue.server.dto.order.OrderDTO;
+import io.messagequeue.server.dto.order.OrderItemRequest;
+import io.messagequeue.server.dto.order.OrderRequest;
+import io.messagequeue.server.dto.order.OrderResponse;
 import io.messagequeue.server.mapper.OrderMapper;
 import io.messagequeue.server.messaging.OrderProducer;
 import io.messagequeue.server.model.Order;

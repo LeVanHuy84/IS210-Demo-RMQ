@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.messagequeue.server.config.RabbitMQConfig;
-import io.messagequeue.server.dto.OrderDTO;
-import io.messagequeue.server.dto.OrderResponse;
+import io.messagequeue.server.dto.order.OrderDTO;
+import io.messagequeue.server.dto.order.OrderResponse;
 
 @Service
 public class OrderProducer {

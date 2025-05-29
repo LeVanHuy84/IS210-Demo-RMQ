@@ -52,30 +52,10 @@
                     <img src="${p.imgUrl}" alt="${p.name}">
                     <div class="product-name">${p.name}</div>
                     <div class="product-price">₫${p.price.toLocaleString()}</div>
-                    <button class="add-to-cart">Thêm vào giỏ</button>
                 </div>
             `;
         });
     }
-
-    // function addToCart(name, price, image) {
-    //     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-    //     const existing = cart.find(item => item.name === name);
-
-    //     if (existing) {
-    //         existing.quantity += 1;
-    //     } else {
-    //         cart.push({ name, price, image, quantity: 1 });
-    //     }
-
-    //     localStorage.setItem('cart', JSON.stringify(cart));
-    //     alert(`Đã thêm "${name}" vào giỏ hàng!`);
-    // }
-
-
-    // document.querySelector('.cart-icon').addEventListener('click', () => {
-    //     window.location.href = '/web/orders-ajax';
-    // });
 
     // Gọi hàm khi load trang
     window.onload = () => {
