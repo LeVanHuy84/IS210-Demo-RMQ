@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Product Shop</title>
@@ -24,7 +25,8 @@
 </div>
 
 <!-- Nút mở modal -->
-<button id="openModalBtn">➕ Thêm Sản Phẩm</button>
+<!-- Chỉ hiển thị nếu người dùng có quyền ADMIN -->
+<button id="openModalBtn" sec:authorize="hasRole('ADMIN')">➕ Thêm Sản Phẩm</button>
 
 <!-- Modal thêm sản phẩm -->
 <div id="productModal" class="modal hidden">

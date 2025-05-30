@@ -16,7 +16,7 @@ import io.messagequeue.server.service.OrderService;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("api/v1/orders")
+@RequestMapping("/api/v1/orders")
 @AllArgsConstructor
 public class OrderController {
 

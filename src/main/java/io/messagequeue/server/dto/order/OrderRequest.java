@@ -11,7 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderRequest {
-    private String userId;
-
     private List<OrderItemRequest> orderItems = new ArrayList<>();
 }

@@ -11,7 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import io.messagequeue.server.service.auth.CustomUserDetailsService;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -21,9 +20,9 @@ public class SecurityConfig {
 
         private final CustomUserDetailsService customUserDetailsService;
         private final PasswordEncoder passwordEncoder;
-        private final String[] WHITE_LIST = {"/api/v1/register", "/login", "/register", "/css/**", "/js/**", "/images/**"};
-        private final String ADMIN_REQUEST_MATCHER = "/admin/**";
-        private final String USER_REQUEST_MATCHER = "/user/**";
+        private final String[] WHITE_LIST = {"/login", "/register", "/css/**", "/js/**", "/images/**", "/favicon.ico"};
+        private final String[] ADMIN_REQUEST_MATCHER = {"/admin/**"};
+        private final String[] USER_REQUEST_MATCHER = {"/user/**", "api/v1/**"};
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,7 +35,7 @@ public class SecurityConfig {
                         .formLogin(login -> login
                                         .loginPage("/login")
                                         .loginProcessingUrl("/process-login")
-                                        .defaultSuccessUrl("/web/products-ajax", true)
+                                        .defaultSuccessUrl("/web/index", true)
                                         .permitAll())
                         .logout(logout -> logout
                                         .logoutUrl("/logout")

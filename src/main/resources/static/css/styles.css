@@ -1,26 +1,28 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #f0faff;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #bbdefb);
     color: #333;
     padding: 20px;
+    margin: 0;
 }
 
-
+/* Buttons */
 button {
     padding: 10px 16px;
-    background-color: #4FC3F7;
+    background-color: #1976D2;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     margin: 10px 0;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #039BE5;
+    background-color: #0D47A1;
 }
 
-
+/* Product List Grid */
 #product-list {
     display: flex;
     flex-wrap: wrap;
@@ -33,7 +35,7 @@ button:hover {
     width: 180px;
     height: 280px;
     border: 1px solid #eee;
-    background: #fff;
+    background: white;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
@@ -68,7 +70,7 @@ button:hover {
 }
 
 .product-price {
-    color: #052280;
+    color: #1976D2;
     font-weight: bold;
     margin-bottom: 8px;
 }
@@ -76,7 +78,7 @@ button:hover {
 .add-to-cart {
     padding: 6px 12px;
     font-size: 13px;
-    background-color: #4FC3F7;
+    background-color: #1976D2;
     color: white;
     border: none;
     border-radius: 4px;
@@ -84,11 +86,10 @@ button:hover {
 }
 
 .add-to-cart:hover {
-    background-color: #039BE5;
+    background-color: #0D47A1;
 }
 
-
-
+/* Modal */
 .modal {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -127,10 +128,10 @@ button:hover {
     margin-top: 15px;
 }
 
-
 .close {
     position: absolute;
-    top: 10px; right: 15px;
+    top: 10px;
+    right: 15px;
     font-size: 20px;
     cursor: pointer;
 }
@@ -139,8 +140,9 @@ button:hover {
     display: none;
 }
 
+/* Top Bar */
 .top-bar {
-    background-color: #E1F5FE;
+    background-color: #bbdefb;
     padding: 8px 20px;
     font-size: 14px;
     display: flex;
@@ -150,7 +152,7 @@ button:hover {
 }
 
 .top-bar a {
-    color: #333;
+    color: #1976D2;
     text-decoration: none;
     margin: 0 6px;
 }
@@ -159,8 +161,9 @@ button:hover {
     text-decoration: underline;
 }
 
+/* Main Header */
 .main-header {
-    background-color: #4FC3F7;
+    background-color: #1976D2;
     color: white;
     padding: 12px 20px;
     display: flex;
@@ -170,9 +173,19 @@ button:hover {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
     font-size: 24px;
     font-weight: bold;
+    color: #ffffff; /* hoặc màu bạn chọn */
 }
+
+.logo-img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
 
 .search-box {
     flex-grow: 1;
@@ -183,6 +196,7 @@ button:hover {
     max-width: 500px;
 }
 
+/* Cart Icon */
 .cart-icon {
     font-size: 20px;
     cursor: pointer;
@@ -191,7 +205,7 @@ button:hover {
 
 #cart-count {
     background: white;
-    color: #039BE5;
+    color: #1976D2;
     font-size: 12px;
     padding: 2px 6px;
     border-radius: 10px;
@@ -200,8 +214,10 @@ button:hover {
     right: -12px;
 }
 
+/* Modal Title */
 .modal-content h2 {
     margin-bottom: 20px;
+    color: #1976D2;
 }
 
 .modal-content a {
@@ -210,4 +226,91 @@ button:hover {
 
 .modal-content a:hover {
     text-decoration: underline;
+}
+
+
+/* Modal chi tiết sản phẩm */
+#detailModal .modal-content {
+    width: 450px;
+    max-width: 90%;
+    background: white;
+    padding: 30px 25px;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    position: relative;
+    animation: fadeInScale 0.3s ease;
+}
+
+#detailModal h2 {
+    font-size: 22px;
+    color: #1976D2;
+    margin-bottom: 15px;
+}
+
+#detailModal img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+#detailModal p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+#detailModal #detailPrice {
+    font-size: 18px;
+    color: #0D47A1;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.close-detail {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-detail:hover {
+    color: #333;
+}
+
+.add-to-cart-btn {
+    margin-top: 20px;
+    background-color: #1976D2;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #0D47A1;
+}
+
+
+/* Animation cho modal */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

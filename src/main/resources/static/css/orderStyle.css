@@ -1,9 +1,82 @@
-.cart-container {
-    margin-top: 40px;
-    background: white;
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #e3f2fd, #bbdefb);
+    color: #333;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin: 0;
+}
+
+/* Top Bar */
+.top-bar {
+    background-color: #bbdefb;
+    padding: 8px 20px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #333;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-bar a {
+    color: #1976D2;
+    text-decoration: none;
+    margin: 0 6px;
+}
+
+.top-bar a:hover {
+    text-decoration: underline;
+}
+
+.main-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1976D2; /* hoặc màu bạn chọn */
+}
+
+.logo-img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.search-box {
+    margin-left: auto;
+    padding: 8px;
+    font-size: 16px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.search-box {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.cart-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .cart-table {
@@ -18,26 +91,37 @@
     text-align: center;
 }
 
-.cart-table img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 4px;
+.cart-table th {
+    background-color: #1976D2;
+    color: white;
 }
 
 .cart-summary {
     margin-top: 20px;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 18px;
+    font-weight: bold;
+    color: #1976D2;
 }
 
 .checkout-btn {
-    padding: 10px 24px;
-    font-size: 16px;
-    background-color: #3498db;
+    margin-top: 20px;
+    float: right;
+    padding: 10px 20px;
+    background-color: #1976D2;
+    color: white;
     border: none;
     border-radius: 6px;
-    color: white;
     cursor: pointer;
-    margin-top: 10px;
+}
+
+.checkout-btn:hover {
+    background-color: #0D47A1;
+}
+
+.delete-btn {
+    color: red;
+    cursor: pointer;
 }
