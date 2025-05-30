@@ -6,12 +6,10 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import io.messagequeue.server.dto.order.OrderDTO;
 import io.messagequeue.server.dto.order.OrderItemRequest;
 import io.messagequeue.server.dto.order.OrderRequest;
 import io.messagequeue.server.dto.order.OrderResponse;
 import io.messagequeue.server.mapper.OrderMapper;
-import io.messagequeue.server.messaging.OrderProducer;
 import io.messagequeue.server.model.Order;
 import io.messagequeue.server.model.OrderItem;
 import io.messagequeue.server.model.Product;
@@ -24,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderService {
     private final OrderRepository orderRepository;
-    private final OrderProducer orderProducer;
     private final ProductRepository productRepository;
     private final OrderMapper orderMapper;
 
@@ -32,7 +29,7 @@ public class OrderService {
         return orderMapper.toDTOs(orderRepository.findAll());
     }
 
-    public OrderDTO createOrder(OrderRequest request) {
+    public OrderResponse createOrder(OrderRequest request, Long uid) {
         Order order = orderMapper.toEntity(request);
         // Gán lại quan hệ ngược
         List<Long> productIds = request.getOrderItems().stream().map(OrderItemRequest::getProductId).toList();
@@ -50,6 +47,7 @@ public class OrderService {
                     }).toList();
             order.setOrderItems(orderItems);
 
+        order.setUserId(uid);
         order.setOrderItems(orderItems);
         order.setStatus(OrderStatus.PENDING);
 
@@ -57,9 +55,8 @@ public class OrderService {
         Order savedOrder = orderRepository.save(order);
         // Chuyển đổi sang DTO
         OrderResponse orderResponse = orderMapper.toDTO(savedOrder);
-
-        // Gửi message vào MQ
-        return orderProducer.placeOrder(orderResponse);
+        
+        return orderResponse;
     }
 }
 

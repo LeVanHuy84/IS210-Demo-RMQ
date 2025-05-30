@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderDTO {
-    private OrderResponse orderResponse;
+    private OrderRequest orderRequest;
+    private Long uid;
     private String orderStatus;
     private String message;
 }

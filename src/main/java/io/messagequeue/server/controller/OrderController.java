@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import io.messagequeue.server.dto.order.OrderDTO;
 import io.messagequeue.server.dto.order.OrderRequest;
 import io.messagequeue.server.dto.order.OrderResponse;
+import io.messagequeue.server.messaging.OrderProducer;
 import io.messagequeue.server.service.OrderService;
+import io.messagequeue.server.utils.AuthUtils;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -21,6 +23,7 @@ import lombok.AllArgsConstructor;
 public class OrderController {
 
     private final OrderService orderService;
+    private final OrderProducer orderProducer;
 
     @GetMapping
     public ResponseEntity<List<OrderResponse>> getAllOrders() {
@@ -29,7 +32,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderRequest request) {
-        OrderDTO savedOrder = orderService.createOrder(request);
-        return ResponseEntity.ok(savedOrder);
+        Long uid = AuthUtils.getCurrentUserId();
+        return ResponseEntity.ok(orderProducer.placeOrder(request, uid));
     }
 }

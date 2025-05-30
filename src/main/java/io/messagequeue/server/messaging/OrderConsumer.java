@@ -5,25 +5,27 @@ import org.springframework.stereotype.Component;
 
 import io.messagequeue.server.config.RabbitMQConfig;
 import io.messagequeue.server.dto.order.OrderDTO;
-import io.messagequeue.server.model.Order;
-import io.messagequeue.server.model.enums.OrderStatus;
-import io.messagequeue.server.repository.OrderRepository;
+import io.messagequeue.server.service.OrderService;
 import lombok.RequiredArgsConstructor;
 
 @Component
 @RequiredArgsConstructor
 public class OrderConsumer {
-    private final OrderRepository orderRepository;
+    private final OrderService orderService;
 
     @RabbitListener(queues = RabbitMQConfig.QUEUE)
     public void consume(OrderDTO orderDTO){
-        System.out.println("Consumer is able to consume message form queues"+orderDTO);
+        try {
+            System.out.println("Consumer is able to consume message form queues"+orderDTO);
+            // Bước xử lý đơn hàng (giả lập):
+            System.out.println("Kiểm tra tồn kho...");
+            System.out.println("Xác nhận thanh toán...");
+            System.out.println("Tạo đơn hàng và lưu vào DB...");
 
-        // Cập nhật trạng thái đơn hàng trong DB (nếu cần)
-        Order order = orderRepository.findById(orderDTO.getOrderResponse().getId()).orElse(null);
-        if (order != null) {
-            order.setStatus(OrderStatus.PROCESSING); // ví dụ enum
-            orderRepository.save(order);
+            // Cập nhật trạng thái đơn hàng trong DB (nếu cần)
+            orderService.createOrder(orderDTO.getOrderRequest(), orderDTO.getUid());
+        } catch (Exception e) {
+            throw new RuntimeException("Error");
         }
     }
 }

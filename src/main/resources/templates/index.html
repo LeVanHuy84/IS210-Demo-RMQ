@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="user-role" th:content="${#authentication?.principal?.authorities}"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <title>Product Shop</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -25,7 +27,7 @@
         <img src="/images/shop.png" alt="Shop Logo" class="logo-img">
         MyShop
     </div> 
-    <input type="text" placeholder="Tìm sản phẩm..." class="search-box">
+    <input type="text" id="searchBox" placeholder="Tìm sản phẩm..." class="search-box">
     <div class="cart-icon" onclick="goToOrderPage()" sec:authorize="hasRole('CUSTOMER')">🛒 <span id="cart-count">0</span></div>
 </div>
 
@@ -55,7 +57,7 @@
         <img id="detailImage" src="" alt="Product Image">
         <p id="detailDescription"></p>
         <div id="detailPrice"></div>
-        <button class="add-to-cart-btn" sec:authorize="hasRole('CUSTOMER')">🛒 Thêm vào giỏ</button>
+        <button class="add-to-cart-btn" sec:authorize="hasRole('CUSTOMER')">Thêm vào giỏ</button>
     </div>
 </div>
 
