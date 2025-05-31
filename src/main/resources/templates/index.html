@@ -34,21 +34,27 @@
 <!-- Nút mở modal -->
 <button id="openModalBtn" sec:authorize="hasRole('ADMIN')">➕ Thêm Sản Phẩm</button>
 
-<!-- Modal thêm sản phẩm -->
+<!-- Modal thêm/sửa sản phẩm -->
 <div id="productModal" class="modal hidden">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Thêm Sản Phẩm</h2>
-        <input type="text" id="name" placeholder="Tên sản phẩm"><br>
-        <textarea id="description" class="multi-line-input" placeholder="Mô tả" rows="4"></textarea><br>
-        <input type="number" id="price" placeholder="Giá" step="0.01"><br>
-        <input type="file" id="imageFile"><br>
-        <button onclick="uploadAndCreateProduct()">Tạo sản phẩm</button>
+        <h2 id="modalTitle">Thêm Sản Phẩm</h2>
+        <form id="productForm">
+            <input type="hidden" id="productId">
+            <input type="text" id="name" placeholder="Tên sản phẩm" required><br>
+            <textarea id="description" class="multi-line-input" placeholder="Mô tả" rows="4" required></textarea><br>
+            <input type="number" id="price" placeholder="Giá" step="100000" required><br>
+            <input type="number" id="quantity" placeholder="Số lượng" min="0" required><br>
+            <input type="file" id="imageFile"><br>
+            <img id="previewImage" src="" alt="Preview" style="max-width: 100px; display: none;"><br>
+            <button type="submit" id="submitBtn">Tạo sản phẩm</button>
+        </form>
     </div>
 </div>
 
 <!-- Danh sách sản phẩm -->
 <div id="product-list" class="product-grid"></div>
+
 <!-- Modal chi tiết sản phẩm -->
 <div id="detailModal" class="modal hidden">
     <div class="modal-content detail-modal">
@@ -61,7 +67,8 @@
                 <h2 id="detailName"></h2>
                 <p id="detailDescription"></p>
                 <div id="detailPrice"></div>
-                <button class="add-to-cart-btn" sec:authorize="hasRole('CUSTOMER')">Thêm vào giỏ</button>
+                <div id="detailQuantity"></div>
+                <button class="add-to-cart-btn" id="detailAddToCartBtn" sec:authorize="hasRole('CUSTOMER')">Thêm vào giỏ</button>
             </div>
         </div>
     </div>
@@ -71,7 +78,7 @@
     <div class="footer-container">
         <div class="footer-col">
             <h3>THÔNG TIN LIÊN HỆ</h3>
-            <p><strong>Địa chỉ:</strong>01 Đ.Thống Nhất, Dĩ An, Bình Dương</p>
+            <p><strong>Địa chỉ:</strong> 01 Đ.Thống Nhất, Dĩ An, Bình Dương</p>
             <p><strong>Điện thoại:</strong> 0123987656</p>
             <p><strong>Email:</strong> myshop@gmail.com</p>
             <p><strong>Giờ làm việc:</strong> Thứ 3 - CN (9h - 20h)</p>
@@ -109,7 +116,6 @@
         © 2025 MyShop - Đã đăng ký với Bộ Công Thương
     </div>
 </footer>
-
 
 <script src="/js/index.js"></script>
 

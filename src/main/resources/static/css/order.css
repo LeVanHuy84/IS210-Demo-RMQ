@@ -1,4 +1,5 @@
 .order-section {
+    min-height: 400px;
     max-width: 1000px;
     margin: 40px auto;
     background: #fff;

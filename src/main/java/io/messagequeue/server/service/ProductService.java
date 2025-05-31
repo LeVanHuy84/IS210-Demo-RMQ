@@ -39,9 +39,7 @@ public class ProductService {
                 .orElseThrow(() -> new NoSuchElementException("Product not found with id " + id));
 
         // Cập nhật thông tin
-        product.setName(request.getName());
-        product.setDescription(request.getDescription());
-        product.setImgUrl(request.getImgUrl());
+        productMapper.updateEntityFromDto(request, product);
 
         Product updated = productRepository.save(product);
         return productMapper.toDTO(updated);

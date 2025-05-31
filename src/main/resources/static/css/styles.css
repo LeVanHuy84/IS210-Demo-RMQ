@@ -89,6 +89,23 @@ button:hover {
     background-color: #0D47A1;
 }
 
+.view-detail-btn {
+    margin-top: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    background-color: #E3F2FD;
+    color: #1976D2;
+    border: 1px solid #1976D2;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-detail-btn:hover {
+    background-color: #1976D2;
+    color: white;
+}
+
 /* Modal */
 .modal {
     position: fixed;
@@ -97,6 +114,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .modal-content {
@@ -177,7 +195,7 @@ button:hover {
     align-items: center;
     font-size: 24px;
     font-weight: bold;
-    color: #ffffff; /* hoặc màu bạn chọn */
+    color: #ffffff;
 }
 
 .logo-img {
@@ -185,7 +203,6 @@ button:hover {
     height: 24px;
     margin-right: 8px;
 }
-
 
 .search-box {
     flex-grow: 1;
@@ -225,8 +242,6 @@ button:hover {
     font-family: inherit;
 }
 
-
-/* Modal Title */
 .modal-content h2 {
     margin-bottom: 20px;
     color: #1976D2;
@@ -239,7 +254,6 @@ button:hover {
 .modal-content a:hover {
     text-decoration: underline;
 }
-
 
 /* Modal chi tiết sản phẩm */
 #detailModal .modal-content {
@@ -363,8 +377,89 @@ button:hover {
     background-color: #0D47A1;
 }
 
+/* Modal giỏ hàng */
+#cartModal .modal-content {
+    width: 600px;
+    max-width: 90%;
+    background: #fff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', sans-serif;
+    position: relative;
+    animation: fadeInScale 0.3s ease;
+}
 
-/* Animation cho modal */
+#cartModal h2 {
+    font-size: 20px;
+    color: #1976D2;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cart-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.cart-item-name {
+    flex: 1;
+}
+
+.cart-item-quantity {
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.cart-item-total {
+    color: #0D47A1;
+    font-weight: bold;
+}
+
+.remove-cart-item {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-cart-item:hover {
+    background-color: #c62828;
+}
+
+.cart-total {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 10px;
+    color: #1976D2;
+}
+
+.checkout-btn {
+    margin-top: 15px;
+    width: 100%;
+    background-color: #43a047;
+}
+
+.checkout-btn:hover {
+    background-color: #2e7d32;
+}
+
+/* Animation */
 @keyframes fadeInScale {
     0% {
         opacity: 0;
@@ -376,10 +471,24 @@ button:hover {
     }
 }
 
+@media screen and (max-width: 600px) {
+    #detailModal .modal-content,
+    #cartModal .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
 
+    .detail-flex-container {
+        flex-direction: column;
+    }
 
+    .detail-image,
+    .detail-info {
+        max-width: 100%;
+    }
+}
 
-/* v */
+/* Footer */
 .footer {
     background-color: #f5f5f5;
     padding: 30px 20px 10px;
@@ -438,4 +547,36 @@ button:hover {
     padding-top: 10px;
     font-size: 13px;
     color: #777;
+}
+
+
+.action-buttons {
+    display: flex;
+    gap: 8px; /* khoảng cách giữa nút */
+    margin-top: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+    padding: 6px 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+}
+
+.edit-btn {
+    background-color: #f0c14b;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.out-of-stock {
+    color: red;
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
 }

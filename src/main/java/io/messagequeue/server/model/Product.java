@@ -26,4 +26,6 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String imgUrl;
+    
+    private Integer quantity = 0;
 }
