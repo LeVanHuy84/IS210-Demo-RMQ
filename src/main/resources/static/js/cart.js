@@ -3,7 +3,7 @@ document.getElementById("logo").addEventListener("click", function() {
 });
 
 // Load cart from localStorage
-document.addEventListener("DOMContentLoaded", function () {
+function renderCart() {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     const tbody = document.getElementById("cart-items");
     const totalPriceElement = document.getElementById("total-price");
@@ -18,9 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
         total += itemTotal;
 
         row.innerHTML = `
-            <td>${item.name}</td>
+            <td class="product-info">
+                <img src="${item.imgUrl}" alt="${item.name}" class="product-thumb">
+                <span>${item.name}</span>
+            </td>
             <td>${item.price.toLocaleString()}₫</td>
-            <td>${item.quantity}</td>
+            <td>
+                <button class="qty-btn" data-action="decrease" data-index="${index}">-</button>
+                <span class="qty-display">${item.quantity}</span>
+                <button class="qty-btn" data-action="increase" data-index="${index}">+</button>
+            </td>
             <td>${itemTotal.toLocaleString()}₫</td>
             <td><span class="delete-btn" data-index="${index}">Xóa</span></td>
         `;
@@ -29,16 +36,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
     totalPriceElement.textContent = `${total.toLocaleString()}₫`;
 
-    // Delete item from cart
+    // Gắn lại các sự kiện cho nút
+    attachEventListeners();
+}
+
+function attachEventListeners() {
+    // Tăng/giảm số lượng
+    document.querySelectorAll('.qty-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const action = this.getAttribute('data-action');
+            const index = this.getAttribute('data-index');
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+            if (action === 'increase') {
+                cartItems[index].quantity += 1;
+            } else if (action === 'decrease' && cartItems[index].quantity > 1) {
+                cartItems[index].quantity -= 1;
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            renderCart(); // Thay vì reload
+        });
+    });
+
+    // Xóa sản phẩm
     document.querySelectorAll('.delete-btn').forEach(btn => {
         btn.addEventListener('click', function () {
             const index = this.getAttribute("data-index");
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
             cartItems.splice(index, 1);
             localStorage.setItem("cart", JSON.stringify(cartItems));
-            location.reload();
+            renderCart(); // Thay vì reload
         });
     });
+}
+
+// khởi chạy
+document.addEventListener("DOMContentLoaded", function () {
+    renderCart(); // Tự động vẽ giỏ hàng lần đầu
 });
+
+
 
 document.querySelector(".checkout-btn").addEventListener("click", function () {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];

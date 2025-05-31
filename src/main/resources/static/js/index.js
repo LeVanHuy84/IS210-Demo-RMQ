@@ -1,4 +1,4 @@
-    
+
     const modal = document.getElementById("productModal");
     const openBtn = document.getElementById("openModalBtn");
     if (openBtn) {
@@ -56,19 +56,23 @@
         }
     }
 
-    async function loadProducts() {
-        const response = await fetch('/api/v1/products');
-        const products = await response.json();
+let allProducts = []; // lưu toàn bộ sản phẩm sau khi load
 
-        const container = document.getElementById('product-list');
-        container.innerHTML = '';
+async function loadProducts() {
+    const response = await fetch('/api/v1/products');
+    allProducts = await response.json();  // Lưu tất cả vào biến global
+    renderProducts(allProducts);
+}
 
-        const userRoleMeta = document.querySelector('meta[name="user-role"]');
-        const userRoles = userRoleMeta?.content || "";
+function renderProducts(products) {
+    const container = document.getElementById('product-list');
+    container.innerHTML = '';
 
-        const isCustomer = userRoles.includes("ROLE_CUSTOMER");
+    const userRoleMeta = document.querySelector('meta[name="user-role"]');
+    const userRoles = userRoleMeta?.content || "";
+    const isCustomer = userRoles.includes("ROLE_CUSTOMER");
 
-        products.forEach(p => {
+    products.forEach(p => {
         const card = document.createElement("div");
         card.className = "product-card";
         card.innerHTML = `
@@ -78,23 +82,29 @@
             ${isCustomer ? '<button class="add-to-cart-btn">Thêm vào giỏ hàng</button>' : ''}
         `;
 
-        // Gắn onclick cho thẻ card
         card.onclick = () => showProductDetail(p);
 
-        // Ngăn click ở nút "Thêm vào giỏ hàng" làm lan lên card
         if (isCustomer) {
-            // Sau khi innerHTML xong mới truy được button
             const btn = card.querySelector(".add-to-cart-btn");
             btn.onclick = (event) => {
-                event.stopPropagation();  // 👈 ngăn nổi bọt
+                event.stopPropagation();
                 addToCart(p);
             };
         }
 
         container.appendChild(card);
     });
+}
 
-    }
+// Tìm kiếm sản phẩm theo tên
+document.getElementById("searchBox").addEventListener("input", function () {
+    const keyword = this.value.trim().toLowerCase();
+    const filtered = allProducts.filter(p =>
+        p.name.toLowerCase().includes(keyword)
+    );
+    renderProducts(filtered);
+});
+
 
     function showProductDetail(product) {
         document.getElementById("detailName").innerText = product.name;
@@ -124,32 +134,36 @@
 
     function updateCartCount() {
         const cart = getCart();
-        const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const count = cart.length; // ✅ chỉ cần đếm số item trong mảng (mỗi item là 1 loại sản phẩm)
         document.getElementById("cart-count").innerText = count;
     }
+
 
     function addToCart(product) {
         const cart = getCart();
         const existing = cart.find(item => item.id === product.id);
+
         if (existing) {
-            existing.quantity += 1;
+            existing.quantity += 1; // ✅ Nếu đã có, chỉ tăng số lượng
         } else {
             cart.push({
                 id: product.id,
                 name: product.name,
                 price: product.price,
                 imgUrl: product.imgUrl,
-                quantity: 1
+                quantity: 1 // ✅ Nếu chưa có, thêm mới với quantity = 1
             });
         }
+
         saveCart(cart);
-        updateCartCount();
+        updateCartCount(); // ✅ Cập nhật theo kiểu đếm số loại (cart.length)
         alert("Đã thêm vào giỏ hàng!");
     }
 
 
+
     function goToOrderPage() {
-        window.location.href = '/web/orders-ajax';
+        window.location.href = '/web/carts';
     }
 
     // Gọi hàm khi load trang

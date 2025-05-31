@@ -25,14 +25,14 @@ public class AjaxWebController {
         return "index"; // maps to templates/index.html
     }
 
-    @GetMapping("/web/products-ajax")
-    public String showAjaxPage() {
-        return "products"; // maps to templates/products_ajax.html
+    @GetMapping("/web/carts")
+    public String showCartsAjaxPage() {
+        return "carts"; // maps to templates/orders_ajax.html
     }
 
-    @GetMapping("/web/orders-ajax")
+    @GetMapping("web/orders")
     public String showOrdersAjaxPage() {
-        return "orders"; // maps to templates/orders_ajax.html
+        return "orders";
     }
 
     // Hiển thị form đăng ký

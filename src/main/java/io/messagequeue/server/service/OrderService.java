@@ -16,6 +16,7 @@ import io.messagequeue.server.model.Product;
 import io.messagequeue.server.model.enums.OrderStatus;
 import io.messagequeue.server.repository.OrderRepository;
 import io.messagequeue.server.repository.ProductRepository;
+import io.messagequeue.server.utils.AuthUtils;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -27,6 +28,11 @@ public class OrderService {
 
     public List<OrderResponse> getAllOrders() {
         return orderMapper.toDTOs(orderRepository.findAll());
+    }
+
+    public List<OrderResponse> getAllForCurrentUser() {
+        var orders = orderRepository.findAllByUserId(AuthUtils.getCurrentUserId());
+        return orderMapper.toDTOs(orders);
     }
 
     public OrderResponse createOrder(OrderRequest request, Long uid) {

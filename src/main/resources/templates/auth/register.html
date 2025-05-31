@@ -12,32 +12,32 @@
         
         <form th:action="@{/register}" method="post" th:object="${registerRequest}">
             <div class="input-group">
-                <label for="username">👤 Tên đăng nhập</label>
+                <label for="username"> Tên đăng nhập</label>
                 <input type="text" id="username" th:field="*{username}" required />
             </div>
 
             <div class="input-group">
-                <label for="fullName">📝 Họ và tên</label>
+                <label for="fullName"> Họ và tên</label>
                 <input type="text" id="fullName" th:field="*{fullName}" required />
             </div>
 
             <div class="input-group">
-                <label for="email">📧 Email</label>
+                <label for="email"> Email</label>
                 <input type="email" id="email" th:field="*{email}" required />
             </div>
 
             <div class="input-group">
-                <label for="phone">📞 Số điện thoại</label>
+                <label for="phone"> Số điện thoại</label>
                 <input type="tel" id="phone" th:field="*{phone}" required />
             </div>
 
             <div class="input-group">
-                <label for="dateOfBirth">🎂 Ngày sinh</label>
+                <label for="dateOfBirth"> Ngày sinh</label>
                 <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}" required />
             </div>
 
             <div class="input-group password-group">
-                <label for="password">🔒 Mật khẩu</label>
+                <label for="password"> Mật khẩu</label>
                 <div class="password-wrapper">
                     <input type="password" id="password" th:field="*{password}" required />
                     <span class="toggle-password" onclick="togglePassword('password', this)">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="input-group password-group">
-                <label for="confirmPassword">🔁 Nhập lại mật khẩu</label>
+                <label for="confirmPassword"> Nhập lại mật khẩu</label>
                 <div class="password-wrapper">
                     <input type="password" id="confirmPassword" name="confirmPassword" required />
                     <span class="toggle-password" onclick="togglePassword('confirmPassword', this)">

@@ -30,6 +30,11 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<List<OrderResponse>> getAllOrdersForCurrentUser() {
+        return ResponseEntity.ok(orderService.getAllForCurrentUser());
+    }
+
     @PostMapping
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderRequest request) {
         Long uid = AuthUtils.getCurrentUserId();

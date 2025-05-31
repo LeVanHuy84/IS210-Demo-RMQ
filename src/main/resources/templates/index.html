@@ -14,7 +14,7 @@
 <div class="top-bar">
     <div class="top-right">
         <a href="#">Thông Báo</a> |
-        <a href="#">Hỗ Trợ</a> |
+        <a th:href="@{/web/orders}">Đơn mua</a> |
         <form id="logoutForm" th:action="@{/logout}" method="post" style="display:none;">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         </form>
@@ -40,7 +40,7 @@
         <span class="close">&times;</span>
         <h2>Thêm Sản Phẩm</h2>
         <input type="text" id="name" placeholder="Tên sản phẩm"><br>
-        <input type="text" id="description" placeholder="Mô tả"><br>
+        <textarea id="description" class="multi-line-input" placeholder="Mô tả" rows="4"></textarea><br>
         <input type="number" id="price" placeholder="Giá" step="0.01"><br>
         <input type="file" id="imageFile"><br>
         <button onclick="uploadAndCreateProduct()">Tạo sản phẩm</button>
@@ -53,13 +53,63 @@
 <div id="detailModal" class="modal hidden">
     <div class="modal-content detail-modal">
         <span class="close-detail">&times;</span>
-        <h2 id="detailName"></h2>
-        <img id="detailImage" src="" alt="Product Image">
-        <p id="detailDescription"></p>
-        <div id="detailPrice"></div>
-        <button class="add-to-cart-btn" sec:authorize="hasRole('CUSTOMER')">Thêm vào giỏ</button>
+        <div class="detail-flex-container">
+            <div class="detail-image">
+                <img id="detailImage" src="" alt="Product Image">
+            </div>
+            <div class="detail-info">
+                <h2 id="detailName"></h2>
+                <p id="detailDescription"></p>
+                <div id="detailPrice"></div>
+                <button class="add-to-cart-btn" sec:authorize="hasRole('CUSTOMER')">Thêm vào giỏ</button>
+            </div>
+        </div>
     </div>
 </div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <p><strong>Địa chỉ:</strong>01 Đ.Thống Nhất, Dĩ An, Bình Dương</p>
+            <p><strong>Điện thoại:</strong> 0123987656</p>
+            <p><strong>Email:</strong> myshop@gmail.com</p>
+            <p><strong>Giờ làm việc:</strong> Thứ 3 - CN (9h - 20h)</p>
+        </div>
+
+        <div class="footer-col">
+            <h3>VỀ MYSHOP</h3>
+            <ul>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Chính sách đổi trả</a></li>
+                <li><a href="#">Bảo mật & Thanh toán</a></li>
+                <li><a href="#">Hướng dẫn đặt hàng</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>TIN TỨC</h3>
+            <ul>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Khuyến mãi</a></li>
+                <li><a href="#">Review sản phẩm</a></li>
+                <li><a href="#">Hướng dẫn sử dụng</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h3>LIÊN KẾT</h3>
+            <ul>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Zalo</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 MyShop - Đã đăng ký với Bộ Công Thương
+    </div>
+</footer>
+
 
 <script src="/js/index.js"></script>
 

@@ -14,6 +14,7 @@ public interface OrderItemMapper extends GenericMapper<OrderItemRequest, OrderIt
     @Override
     @Mapping(source = "product.id", target = "productId")
     @Mapping(source = "product.name", target = "productName")
+    @Mapping(source = "product.imgUrl", target = "imgUrl")
     @Mapping(source = "product.price", target = "price")
     OrderItemResponse toDTO(OrderItem entity);
 }

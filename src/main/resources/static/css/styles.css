@@ -33,7 +33,7 @@ button:hover {
 
 .product-card {
     width: 180px;
-    height: 280px;
+    max-height: 300px;
     border: 1px solid #eee;
     background: white;
     padding: 10px;
@@ -214,6 +214,18 @@ button:hover {
     right: -12px;
 }
 
+.multi-line-input {
+    width: 100%;
+    resize: vertical;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+
 /* Modal Title */
 .modal-content h2 {
     margin-bottom: 20px;
@@ -231,7 +243,7 @@ button:hover {
 
 /* Modal chi tiết sản phẩm */
 #detailModal .modal-content {
-    width: 450px;
+    width: 800px;
     max-width: 90%;
     background: white;
     padding: 30px 25px;
@@ -251,7 +263,7 @@ button:hover {
 
 #detailModal img {
     width: 100%;
-    height: 200px;
+    max-height: 400px;
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 16px;
@@ -270,6 +282,55 @@ button:hover {
     color: #0D47A1;
     font-weight: bold;
     margin-top: 10px;
+}
+
+.detail-flex-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.detail-image {
+    flex: 1 1 40%;
+    max-width: 45%;
+}
+
+.detail-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.detail-info {
+    flex: 1 1 50%;
+    max-width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detail-info h2 {
+    font-size: 22px;
+    color: #1976D2;
+    margin-bottom: 10px;
+}
+
+.detail-info p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.detail-info #detailPrice {
+    font-size: 18px;
+    color: #0D47A1;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .close-detail {
@@ -313,4 +374,68 @@ button:hover {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+
+
+
+/* v */
+.footer {
+    background-color: #f5f5f5;
+    padding: 30px 20px 10px;
+    font-size: 14px;
+    color: #333;
+    margin-top: 40px;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-col {
+    flex: 1 1 200px;
+    margin: 10px;
+}
+
+.footer-col h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #0D47A1;
+}
+
+.footer-col p,
+.footer-col li {
+    margin-bottom: 6px;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col a {
+    text-decoration: none;
+    color: #333;
+}
+
+.footer-col a:hover {
+    text-decoration: underline;
+}
+
+.social-icons img,
+.dmca-badge,
+.gov-badge {
+    height: 32px;
+    margin-right: 8px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 13px;
+    color: #777;
 }
