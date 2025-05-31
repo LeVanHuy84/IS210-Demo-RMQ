@@ -1,6 +1,3 @@
-document.getElementById("logo").addEventListener("click", function() {
-    window.location.href = "/web/index"; // Điều hướng về trang /index
-});
 
 document.addEventListener("DOMContentLoaded", () => {
     const roleMeta = document.querySelector('meta[name="user-role"]');

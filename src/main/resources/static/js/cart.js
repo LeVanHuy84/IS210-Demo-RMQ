@@ -1,6 +1,3 @@
-document.getElementById("logo").addEventListener("click", function() {
-    window.location.href = "/web/index"; // Điều hướng về trang /index
-});
 
 // Load cart from localStorage
 function renderCart() {
@@ -107,15 +104,16 @@ document.querySelector(".checkout-btn").addEventListener("click", function () {
     },
     body: JSON.stringify(orderRequest)
     })
-
     .then(response => {
         if (!response.ok) {
             throw new Error("Đặt hàng thất bại.");
+        } else {
+            alert(response.body)
         }
         return response.json();
     })
     .then(data => {
-        alert("Đặt hàng thành công!");
+        alert(`Trạng thái: ${data.orderStatus}\nThông báo: ${data.message}`);
         localStorage.removeItem("cart");
         window.location.href = "/web/index"; // Hoặc redirect về trang lịch sử đơn hàng
     })

@@ -255,19 +255,30 @@ function updateCartCount() {
     if (countSpan) countSpan.innerText = count;
 }
 
-function goToOrderPage() {
-    window.location.href = "/web/carts";
+
+
+function debounce(func, delay) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+    };
 }
 
-// Tìm kiếm sản phẩm
-document.getElementById("searchBox")?.addEventListener("input", function () {
+const handleSearch = debounce(function () {
     const keyword = this.value.toLowerCase();
     const filtered = allProducts.filter(p =>
         p.name.toLowerCase().includes(keyword) ||
         p.description.toLowerCase().includes(keyword)
     );
     renderProducts(filtered);
-});
+}, 500); // delay 200ms
+
+document.getElementById("searchBox")?.addEventListener("input", handleSearch);
+
+function goToCartPage() {
+    window.location.href = "/web/carts";
+}
 
 // Khởi tạo
 window.onload = () => {
