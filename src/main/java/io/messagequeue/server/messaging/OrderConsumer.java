@@ -18,9 +18,9 @@ public class OrderConsumer {
         try {
             System.out.println("Consumer is able to consume message form queues"+orderDTO);
             // Bước xử lý đơn hàng (giả lập):
-            System.out.println("Kiểm tra tồn kho...");
-            System.out.println("Xác nhận thanh toán...");
-            System.out.println("Tạo đơn hàng và lưu vào DB...");
+            System.out.println("Check inventory...");
+            System.out.println("Payment Confirmation...");
+            System.out.println("Create and save into DB...");
 
             // Cập nhật trạng thái đơn hàng trong DB (nếu cần)
             orderService.createOrder(orderDTO.getOrderRequest(), orderDTO.getUid());
